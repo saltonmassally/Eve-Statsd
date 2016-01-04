@@ -1,5 +1,7 @@
 Eve-Statsd
 ==========
+.. image:: https://travis-ci.org/tarzan0820/Eve-Statsd.png?branch=master
+    :target: https://travis-ci.org/tarzan0820/Eve-Statsd
 
 An addon for Eve. Eve-Statsd automatically monitors active domains/resources, sending "Hit Counters" and "Timers" to your statsd instance
 
