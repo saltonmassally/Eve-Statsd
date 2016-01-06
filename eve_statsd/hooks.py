@@ -34,6 +34,8 @@ def _end_timer_get_delta():
 
 def pre_GET(resource, request, lookup):
     # montoring get requests
+    if not resource:
+        return
     for bucket in (resource + '.counter.all', resource + '.counter.get'):
         _send_to_statsd(resource, bucket)
     # start timer here
@@ -41,6 +43,8 @@ def pre_GET(resource, request, lookup):
 
 def pre_HEAD(resource, request, lookup):
     # montoring get requests
+    if not resource:
+        return
     for bucket in (resource + '.counter.all', resource + '.counter.head'):
         _send_to_statsd(resource, bucket)
     # start timer here
@@ -48,6 +52,8 @@ def pre_HEAD(resource, request, lookup):
 
 def pre_POST(resource, request):
     # montoring get requests
+    if not resource:
+        return
     for bucket in (resource + '.counter.all', resource + '.counter.post'):
         _send_to_statsd(resource, bucket)
     # start timer here
@@ -55,6 +61,8 @@ def pre_POST(resource, request):
 
 def pre_PATCH(resource, request, lookup):
     # montoring get requests
+    if not resource:
+        return
     for bucket in (resource  + '.counter.all', resource + '.counter.patch'):
         _send_to_statsd(resource, bucket)
     # start timer here
@@ -62,6 +70,8 @@ def pre_PATCH(resource, request, lookup):
 
 def pre_PUT(resource, request, lookup):
     # montoring get requests
+    if not resource:
+        return
     for bucket in (resource, resource + '.counter.put'):
         _send_to_statsd(resource + '.counter.all', bucket)
     # start timer here
@@ -69,6 +79,8 @@ def pre_PUT(resource, request, lookup):
 
 def pre_DELETE(resource, request, lookup):
     # montoring get requests
+    if not resource:
+        return
     for bucket in (resource, resource + '.counter.delete'):
         _send_to_statsd(resource + '.counter.all', bucket)
     # start timer here
@@ -77,6 +89,8 @@ def pre_DELETE(resource, request, lookup):
 
 def post_GET(resource, request, payload):
     # logging timers on post
+    if not resource:
+        return
     _send_to_statsd(
         resource, resource + '.timing.get', value=_end_timer_get_delta(),
         stat_type='timer'
@@ -84,6 +98,8 @@ def post_GET(resource, request, payload):
 
 def post_HEAD(resource, request, payload):
     # logging timers on post
+    if not resource:
+        return
     _send_to_statsd(
         resource, resource + '.timing.head', value=_end_timer_get_delta(), 
         stat_type='timer'
@@ -91,6 +107,8 @@ def post_HEAD(resource, request, payload):
 
 def post_POST(resource, request, payload):
     # logging timers on post
+    if not resource:
+        return
     _send_to_statsd(
         resource, resource + '.timing.post', value=_end_timer_get_delta(),
         stat_type='timer'
@@ -98,6 +116,8 @@ def post_POST(resource, request, payload):
     
 def post_PATCH(resource, request, payload):
     # logging timers on post
+    if not resource:
+        return
     _send_to_statsd(
         resource, resource + '.timing.patch', value=_end_timer_get_delta(),
         stat_type='timer'
@@ -105,6 +125,8 @@ def post_PATCH(resource, request, payload):
     
 def post_PUT(resource, request, payload):
     # logging timers on post
+    if not resource:
+        return
     _send_to_statsd(
         resource, resource + '.timing.put', value=_end_timer_get_delta(),
         stat_type='timer'
@@ -112,6 +134,8 @@ def post_PUT(resource, request, payload):
     
 def post_DELETE(resource, request, payload):
     # logging timers on post
+    if not resource:
+        return
     _send_to_statsd(
         resource,
         resource + '.timing.delete', value=_end_timer_get_delta(),
